@@ -56,7 +56,10 @@ class UserGetterServicer(user_service_pb2_grpc.UserGetterServicer):
         self,
         request: user_service_pb2.UserRequestByName,
         context: grpc.ServicerContext,
-    ) -> Generator[user_service_pb2.UserResponse]:
+    ) -> Generator[user_service_pb2.UserResponse]: 
+        '''
+        Если сервер возвращает streaming ответ, то он должен вернуть ИТЕРАТОР, а клиент должен итерироваться по ответу
+        '''
         log.info("Requested matching users by username: %s", request.name)
         for idx in range(1, random.randint(3, 7)):
             user = self.get_random_user_from_username(
