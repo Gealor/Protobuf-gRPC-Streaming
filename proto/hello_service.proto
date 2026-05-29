@@ -5,6 +5,7 @@ package helloService;
 
 service HelloService {
     rpc multiHello (stream Hello) returns (MultiHelloResponse);
+    rpc batchHello (stream Hello) returns (stream HelloResponse);
 }
 
 
@@ -16,6 +17,10 @@ message Hello {
 message MultiHelloResponse { 
     string title = 1;
     repeated Hello greetings = 2;
+}
+
+message HelloResponse {
+    string text = 1;
 }
 
 
