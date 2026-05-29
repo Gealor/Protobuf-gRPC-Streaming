@@ -39,12 +39,23 @@ class HelloServiceStub(object):
                 request_serializer=hello__service__pb2.Hello.SerializeToString,
                 response_deserializer=hello__service__pb2.MultiHelloResponse.FromString,
                 _registered_method=True)
+        self.batchHello = channel.stream_stream(
+                '/helloService.HelloService/batchHello',
+                request_serializer=hello__service__pb2.Hello.SerializeToString,
+                response_deserializer=hello__service__pb2.HelloResponse.FromString,
+                _registered_method=True)
 
 
 class HelloServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def multiHello(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def batchHello(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -57,6 +68,11 @@ def add_HelloServiceServicer_to_server(servicer, server):
                     servicer.multiHello,
                     request_deserializer=hello__service__pb2.Hello.FromString,
                     response_serializer=hello__service__pb2.MultiHelloResponse.SerializeToString,
+            ),
+            'batchHello': grpc.stream_stream_rpc_method_handler(
+                    servicer.batchHello,
+                    request_deserializer=hello__service__pb2.Hello.FromString,
+                    response_serializer=hello__service__pb2.HelloResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -86,6 +102,33 @@ class HelloService(object):
             '/helloService.HelloService/multiHello',
             hello__service__pb2.Hello.SerializeToString,
             hello__service__pb2.MultiHelloResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def batchHello(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(
+            request_iterator,
+            target,
+            '/helloService.HelloService/batchHello',
+            hello__service__pb2.Hello.SerializeToString,
+            hello__service__pb2.HelloResponse.FromString,
             options,
             channel_credentials,
             insecure,

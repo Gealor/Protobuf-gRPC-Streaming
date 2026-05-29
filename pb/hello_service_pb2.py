@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13hello_service.proto\x12\x0chelloService\"#\n\x05Hello\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04text\x18\x02 \x01(\t\"K\n\x12MultiHelloResponse\x12\r\n\x05title\x18\x01 \x01(\t\x12&\n\tgreetings\x18\x02 \x03(\x0b\x32\x13.helloService.Hello2U\n\x0cHelloService\x12\x45\n\nmultiHello\x12\x13.helloService.Hello\x1a .helloService.MultiHelloResponse(\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13hello_service.proto\x12\x0chelloService\"#\n\x05Hello\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04text\x18\x02 \x01(\t\"K\n\x12MultiHelloResponse\x12\r\n\x05title\x18\x01 \x01(\t\x12&\n\tgreetings\x18\x02 \x03(\x0b\x32\x13.helloService.Hello\"\x1d\n\rHelloResponse\x12\x0c\n\x04text\x18\x01 \x01(\t2\x99\x01\n\x0cHelloService\x12\x45\n\nmultiHello\x12\x13.helloService.Hello\x1a .helloService.MultiHelloResponse(\x01\x12\x42\n\nbatchHello\x12\x13.helloService.Hello\x1a\x1b.helloService.HelloResponse(\x01\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,6 +35,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_HELLO']._serialized_end=72
   _globals['_MULTIHELLORESPONSE']._serialized_start=74
   _globals['_MULTIHELLORESPONSE']._serialized_end=149
-  _globals['_HELLOSERVICE']._serialized_start=151
-  _globals['_HELLOSERVICE']._serialized_end=236
+  _globals['_HELLORESPONSE']._serialized_start=151
+  _globals['_HELLORESPONSE']._serialized_end=180
+  _globals['_HELLOSERVICE']._serialized_start=183
+  _globals['_HELLOSERVICE']._serialized_end=336
 # @@protoc_insertion_point(module_scope)
