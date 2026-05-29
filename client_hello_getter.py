@@ -16,6 +16,7 @@ def create_many_greetings(n: int) -> Iterator[hello_service_pb2.Hello]:
     for idx in range(1, n+1):
         name = fake.name()
         description = f"Hello!!! This is message from {name}!"
+        log.info("Send hello %r", description)
         yield hello_service_pb2.Hello(
             name=name,
             text=description,
