@@ -1,0 +1,20 @@
+syntax = "proto2"; // Note: proto3 does not support required fields, so we use proto2 syntax here.
+
+package user;
+
+message User {
+    required int64 id = 1;
+    required string name = 2;
+    optional string email = 3;
+    optional Status status = 4 [default = PROSPECT]; // Default value for status is PROSPECT, so we can set 'optional' here. 
+
+    enum Status {
+        PROSPECT = 0;
+        ACTIVE = 1;
+        BLOCKED = 2;
+    }
+}
+
+
+
+

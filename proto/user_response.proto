@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package UserResponse;
+
+import "user.proto";
+
+message ResponseMeta {
+    required int32 page = 1;
+    required int32 total = 2;
+    required int32 pageSize = 3;
+}
+
+message UserResponse {
+    repeated user.User users = 1; // repeated means that the response can contain multiple users, which is useful for the GetAllUsersMatchingUsername RPC method.
+    required ResponseMeta meta = 2;
+}
+
+

@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package userService;
+
+import "user.proto";
+
+service UserGetter {
+    rpc GetUserById (UserRequestById) returns (UserResponse) {};
+    rpc GetUserByName (UserRequestByName) returns (UserResponse) {};
+    rpc GetAllUsersMatchingUsername (UserRequestByName) returns (stream UserResponse) {};
+}
+
+message UserRequestById {
+    required int64 id = 1;
+}
+
+message UserRequestByName {
+    required string name = 1;
+}
+
+message UserResponse {
+    optional user.User user = 1;
+}
+
+

@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package ping;
+
+message Ping {
+    required bool ok = 1;
+}
