@@ -1,0 +1,26 @@
+[project]
+name = "grpc-test"
+version = "0.1.0"
+description = "protobuf, gRPC, and streaming"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "faker>=40.19.1",
+    "google>=3.0.0",
+    "grpcio-tools==1.80.0",
+    "mypy-protobuf>=5.1.0",
+    "protobuf>=6.31.1,<7.0.0",
+    "protolint>=1.1.4",
+    "protolint-bin>=0.56.4",
+    "setuptools>=82.0.1",
+    "types-protobuf>=7.34.1.20260508",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=2.1.0",
+]
+
+
+[tool.mypy]
+strict = true
