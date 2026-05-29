@@ -1,4 +1,5 @@
 import random
+import time
 from typing import Iterator
 
 import grpc
@@ -20,7 +21,6 @@ def create_many_greetings(n: int) -> Iterator[hello_service_pb2.Hello]:
             text=description,
         )
     
-
 def send_many_greetings(stub: hello_service_pb2_grpc.HelloServiceStub):
     '''
     Если у нас streaming со стороны пользователя, 
@@ -37,10 +37,21 @@ def send_many_greetings(stub: hello_service_pb2_grpc.HelloServiceStub):
     )
 
 
+def send_batch_greetings(stub: hello_service_pb2_grpc.HelloServiceStub):
+    greetings_count = random.randint(1, 6)
+
+    greetings_request = create_many_greetings(greetings_count)
+    responses: Iterator[hello_service_pb2.HelloResponse] = stub.batchHello(greetings_request) 
+    for response in responses:
+        time.sleep(1)
+        log.info("Got response: %r", response.text)
+
+
 def run() -> None:
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = hello_service_pb2_grpc.HelloServiceStub(channel)
-        send_many_greetings(stub)
+        # send_many_greetings(stub)
+        send_batch_greetings(stub)
 
 def main():
     try:
